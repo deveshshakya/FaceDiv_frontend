@@ -25,7 +25,7 @@ const initialState = {
     input: '',
     imageUrl: '',
     box: {},
-    route: 'signin',
+    route: 'sign-in',
     isSignedIn: false,
     user: {
         id: '',
@@ -77,7 +77,7 @@ class App extends Component {
 
     onButtonSubmit = () => {
         this.setState({imageUrl: this.state.input});
-        fetch('http://localhost:3000/imageurl', {
+        fetch('https://limitless-mesa-21473.herokuapp.com/imageurl', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -87,7 +87,7 @@ class App extends Component {
             .then(response => response.json())
             .then(response => {
                 if (response) {
-                    fetch('http://localhost:3000/image', {
+                    fetch('https://limitless-mesa-21473.herokuapp.com/image', {
                         method: 'put',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
@@ -106,7 +106,7 @@ class App extends Component {
     }
 
     onRouteChange = (route) => {
-        if (route === 'signin') {
+        if (route === 'sign-in') {
             this.setState(initialState)
         } else if (route === 'home') {
             this.setState({isSignedIn: true})
@@ -136,7 +136,7 @@ class App extends Component {
                         <FaceDetector box={box} imageUrl={imageUrl}/>
                     </div>
                     : (
-                        route === 'signin'
+                        route === 'sign-in'
                             ? <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
                             : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
                     )

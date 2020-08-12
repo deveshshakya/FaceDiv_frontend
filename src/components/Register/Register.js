@@ -27,7 +27,7 @@ class Register extends React.Component {
         if (!name || !email || !password) {
             alert("Field must not be empty.");
         } else {
-            fetch('http://localhost:3000/register', {
+            fetch('https://limitless-mesa-21473.herokuapp.com/register', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
